@@ -1,0 +1,70 @@
+name: Build & Deploy
+on:
+  push: { branches: [main] }
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  HUGO_VERSION: "0.169.0"
+  HUGO_SHA256: "c41672a0725d307758a132bc94a962e59760eb33f9ba08c991b81f9881d6fa7d"
+  SITE_URL: "https://www.merkata.fun/"
+  SSH_HOST: "merkata.fun"
+  SSH_USER: "deploy"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: production
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with: { submodules: recursive, persist-credentials: false }
+
+      - name: Install Hugo (pinned + checksum verified) 📖
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 -o /tmp/hugo.tar.gz \
+          "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          echo "${HUGO_SHA256} /tmp/hugo.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/hugo.tar.gz -C /tmp hugo
+          sudo install -m 0755 /tmp/hugo /usr/local/bin/hugo
+          hugo version
+
+      - name: Build site 🏗️
+        run: hugo --gc --minify --baseURL "${SITE_URL}"
+
+      - name: Sanity check build output
+        run: |
+          set -euo pipefail
+          test -s public/index.html
+          if grep -rIl --include='*.html' -e 'localhost:1313' public/; then
+          echo "::error::build output references localhost:1313"; exit 1
+          fi
+
+      - name: Deploy site 🛫
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          umask 077
+          mkdir -p "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/deploy_key"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/deploy_key" "$HOME/.ssh/known_hosts"
+          rsync -rlptz --delete-delay --delay-updates --chmod=D755,F644 \
+          -e "ssh -i $HOME/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes \
+          -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts" \
+          public/ "${SSH_USER}@${SSH_HOST}:/"
+
+      - name: Clean up 🧹
+        if: always()
+        run: rm -f "$HOME/.ssh/deploy_key" "$HOME/.ssh/known_hosts"
