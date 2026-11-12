@@ -28,4 +28,7 @@ UseHugoToc: false
 
 Hey there, it's merkata!
 
-This is a work in progress and is mainly an exercise in putting my thoughts together for the benefit of understanding them deeper and better. If you stumble upon this, then hello kind stranger!
+This is a work in progress and is mainly an exercise in putting my thoughts
+together for the benefit of understanding them deeper and better.
+
+If you stumble upon this, then hello kind stranger!
