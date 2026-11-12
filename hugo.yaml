@@ -5,6 +5,7 @@ paginate: 5
 theme: PaperMod
 
 enableRobotsTXT: true
+enableGitInfo: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
