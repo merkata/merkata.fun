@@ -1,6 +1,6 @@
 ---
 title: "My 1st post"
-date: 2020-09-15T11:30:03+00:00
+date: '{{ (.Date | time.AsTime).Format "2006-01-02" }}'
 # weight: 1
 # aliases: ["/first"]
 tags: ["first"]
