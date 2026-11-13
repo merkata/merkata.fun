@@ -33,27 +33,27 @@ personal and work related [Obsidian](https://obsidian.md/) vaults, so I went
 [how](https://santacloud.dev/posts/creating-my-blog---a-developers-tale-of-over-engineering-using-obsidian-hugo-and-github-pages/#dead-eyed-tutorial)
 to
 [setup](https://dhewy.dev/posts/how-i-built-this-blog-using-hugo-obsidian-aws-and-claude/)
-Obsidian with hugo in a git folder with automated commit and push. I was quickly
-focused on having a perfect setup and got distracted from actually writing. I
-felt overwhelmed and blogging was on hold for a while.
+Obsidian with hugo in a git folder with automated commit and push. I was
+quickly focused on having a perfect setup and got distracted from actually
+writing. I felt overwhelmed and blogging was on hold for a while.
 
 In the past few days I revisited the idea of blogging and approached it more
 simplistically. I've always appreciated simplicity in software and in
 engineering, always have been fascinated by the UNIX way of doing things. I
-ended up with the minimal and most comfortable way (for me) to blog: git repo ->
-vim -> commit and push -> post deployed on website.
+ended up with the minimal and most comfortable way (for me) to blog: git repo
+-> vim -> commit and push -> post deployed on website.
 
-Outside of Obsidian, I normally live in [(n)vim](https://neovim.io/). Whatever I
-work on is in version control. It is clutter free and the flow reuses my muscle
-memory.
+Outside of Obsidian, I normally live in [(n)vim](https://neovim.io/). Whatever
+I work on is in version control. It is clutter free and the flow reuses my
+muscle memory.
 
 Whenever I want to write something, I create a new post with `hugo new
-content/post.md` and then `vim content/post.md` for as long as I like. When I
-feel like there's nothing to add at the moment, I `git add content/post.md &&
-git commit -m 'docs: New post'` and "git push". That flow is basically the same
-as my usual work flow of `vim <file>;<tool>; git commands`, where file is some
-"infra.tf" or "manifest.yaml" usually and tool is "terraform", "kubectl" or
-something similar.
+content/posts/post.md` and then `vim content/posts/post.md` for as long as I
+like. When I feel like there's nothing to add at the moment, I `git add
+content/post.md && git commit -m 'docs: New post'` and "git push". That flow is
+basically the same as my usual work flow of `vim <file>;<tool>; git commands`,
+where file is some "infra.tf" or "manifest.yaml" usually and tool is
+"terraform", "kubectl" or something similar.
 
 ## Breakdown
 
@@ -63,7 +63,7 @@ Here is some more info on the whole setup.
 
 I am using [Hugo](https://gohugo.io/) to generate the static content with
 minimal customizations. I found a theme that I like and configured automatic
-titles and publish dates when doing `hugo new content/blog-post.md --kind
+titles and publish dates when doing `hugo new content/posts/blog-post.md --kind
 post`. I don't think I need the customizations, but I created that post kind
 when I was messing with that complicated Obsidian setup. Important thing is now
 I have what I want and I learned a bit about customizing Hugo.
