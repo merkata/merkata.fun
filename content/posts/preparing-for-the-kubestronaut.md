@@ -11,8 +11,8 @@ TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "Desc Text."
-canonicalURL: "https://merkata.fun/to/preparing-for-the-kubestronaut"
+description: "How I prepared for the Kubestronaut certification exams."
+canonicalURL: "https://merkata.fun/posts/preparing-for-the-kubestronaut"
 disableShare: false
 disableHLJS: false
 hideSummary: false

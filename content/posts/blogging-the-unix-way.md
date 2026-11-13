@@ -12,7 +12,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "KISS or: How I Learned to Stop Worrying and Love Blogging"
-canonicalURL: "https://merkata.fun/to/blogging-the-unix-way"
+canonicalURL: "https://merkata.fun/posts/blogging-the-unix-way"
 disableShare: false
 disableHLJS: false
 hideSummary: false
