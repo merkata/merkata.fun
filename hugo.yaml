@@ -3,6 +3,7 @@ locale: en-us
 title: Merkata's Fun Place
 paginate: 5
 theme: PaperMod
+mainSections: [posts]
 
 enableRobotsTXT: true
 enableGitInfo: true
