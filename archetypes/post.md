@@ -12,7 +12,6 @@ draft: false
 hidemeta: false
 comments: false
 description: "Desc Text."
-canonicalURL: "https://merkata.fun/to/page"
 disableShare: false
 disableHLJS: false
 hideSummary: false
