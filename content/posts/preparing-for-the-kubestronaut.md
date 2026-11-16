@@ -192,15 +192,12 @@ speed quickly and you don't need to go to the Deployments kubernetes docs page.
 Other things are just not readily available via `kubectl` subcommands and you
 need to know the most used ones.
 
-Search "pv" -
-[PV](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) - has
-examples on StorageClass, PersistentVolume and PersistentVolumeClaim. Search
-"ingress" -
-[Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) -
-starts off with a minimal Ingress that you can use. Search "netpol" - [Network
-Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
+Search "pv" - [PV](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) - has examples on StorageClass, PersistentVolume
+and PersistentVolumeClaim.
 
-* networking policies examples.
+Search "ingress" - [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) - starts off with a minimal Ingress that you can use.
+
+Search "netpol" - [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) - networking policies examples.
 
 Note that you will find helpful links to the documentation with every task you
 need to solve, do not ignore these! It is still better to know where the
